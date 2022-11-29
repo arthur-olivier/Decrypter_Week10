@@ -28,10 +28,17 @@ def lambda_handler(event, context):
     x=['No found','No found']
     if password=="":
         statusCode=404
+
     else :
         x=password.split(",") 
     
+    
+    hash = x[0]
+    password = str.strip(x[1])
+    
+    Dictionary ={"shaHash": hash, "password": password }
+    
     return {
         'statusCode': statusCode,
-        'body': "hash : " + x[0] + "  , password : "+ x[1]
+        'body': json.dumps(Dictionary)
     }
